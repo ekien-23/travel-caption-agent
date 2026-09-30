@@ -1,8 +1,5 @@
 {
-  "headers": [
-    {
-      "source": "/.well-known/x402",
-      "headers": [{ "key": "Content-Type", "value": "application/json" }]
-    }
+  "rewrites": [
+    { "source": "/.well-known/x402", "destination": "/api/.well-known/x402" }
   ]
 }
