@@ -1,3 +1,31 @@
+export default async function handler(req, res) {
+  // --- x402 Check - das fehlt dem Scanner ---
+  const paymentHeader = req.headers['x-payment'] || req.headers['payment-signature'];
+  
+  if (!paymentHeader) {
+    res.setHeader('Content-Type', 'application/json');
+    return res.status(402).json({
+      x402Version: 2,
+      error: "Payment Required - $0.03 USDC on Base",
+      accepts: [
+        {
+          scheme: "exact",
+          network: "eip155:8453", // Base
+          maxAmountRequired: "30000", // $0.03 = 30000 mit 6 decimals
+          resource: "https://travel-caption-agent.vercel.app/api/virality",
+          payTo: "0x1c92f0c2c63255840313d82b13295ecc83503c04",
+          asset: "0x036CbD53842c5426634e7929541eC2318f3dCF7e", // USDC on Base
+          maxTimeoutSeconds: 60,
+          extra: {
+            name: "USDC",
+            version: "2"
+          }
+        }
+      ]
+    });
+  }
+
+
 import OpenAI from "openai";
 
 const PAY_TO = "0x1c92f0c2c63255840313d82b13295ecc83503c04";
@@ -103,3 +131,4 @@ export default async function handler(req, res) {
     return res.status(500).json({ error: e.message });
   }
 }
+  }
