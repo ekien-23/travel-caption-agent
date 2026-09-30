@@ -1,9 +1,0 @@
-{
-  "x402Version": 2,
-  "resources": [
-    {
-      "resource": "https://travel-caption-agent.vercel.app/api/virality",
-      "description": "Travel Virality Pack $0.03 - caption + 25 hashtags"
-    }
-  ]
-}
