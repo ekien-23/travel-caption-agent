@@ -1,0 +1,7 @@
+{
+  "functions": {
+    "api/caption.js": {
+      "maxDuration": 10
+    }
+  }
+}
