@@ -14,10 +14,41 @@ export default function handler(req, res) {
       "/api/virality": {
         get: {
           summary: "Generate virality pack",
-          parameters: [{ name: "image", in: "query", required: false, schema: { type: "string" } }],
+          operationId: "getVirality",
+          parameters: [
+            {
+              name: "image",
+              in: "query",
+              required: false,
+              description: "Image theme - e.g. beach, jungle, city, mountain",
+              schema: { type: "string", example: "beach" }
+            }
+          ],
           responses: {
-            "402": { description: "Payment Required", content: { "application/json": { schema: { type: "object" } } } },
-            "200": { description: "Success", content: { "application/json": { schema: { type: "object" } } } }
+            "200": {
+              description: "Success - virality pack",
+              content: { "application/json": { schema: { type: "object", properties: { caption: { type: "string" }, hashtags: { type: "array", items: { type: "string" } } } } } }
+            },
+            "402": { description: "Payment Required - $0.03 USDC on Base" }
+          }
+        },
+        post: {
+          summary: "Generate virality pack (POST)",
+          operationId: "postVirality",
+          requestBody: {
+            required: false,
+            content: {
+              "application/json": {
+                schema: {
+                  type: "object",
+                  properties: { image: { type: "string", description: "Image theme", example: "beach" } }
+                }
+              }
+            }
+          },
+          responses: {
+            "200": { description: "Success" },
+            "402": { description: "Payment Required" }
           }
         }
       }
