@@ -1,7 +1,8 @@
 {
-  "functions": {
-    "api/caption.js": {
-      "maxDuration": 10
+  "headers": [
+    {
+      "source": "/.well-known/x402",
+      "headers": [{ "key": "Content-Type", "value": "application/json" }]
     }
-  }
+  ]
 }
