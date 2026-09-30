@@ -1,6 +1,7 @@
 {
   "rewrites": [
     { "source": "/.well-known/x402", "destination": "/api/x402-wellknown" },
+    { "source": "/openapi.json", "destination": "/api/openapi" },
     { "source": "/.well-known/openapi.json", "destination": "/api/openapi" }
   ]
 }
